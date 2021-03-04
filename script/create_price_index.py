@@ -3,7 +3,7 @@ from es_client import es_client
 
 def create_price_index() -> str:
     """Create price index."""
-    if es_client.indices.exist(index='history-prices-daily'):
+    if es_client.indices.exists(index='history-prices-daily'):
         msg = '\"history-prices-daily\" 已經存在'
         return msg
 
