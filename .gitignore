@@ -1,0 +1,7 @@
+.envrc
+*.pyc
+
+### Python ###
+# pipenv
+Pipfile
+Pipfile.lock

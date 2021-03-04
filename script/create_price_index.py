@@ -1,7 +1,12 @@
-from elasticsearch import Elasticsearch
+"""Create price index"""
+from es_client import es_client
 
-def create_price_index():
+def create_price_index() -> str:
     """Create price index."""
+    if es_client.indices.exist(index='history-prices-daily'):
+        msg = '\"history-prices-daily\" 已經存在'
+        return msg
+
     price_index = {
         "mappings" : {
             "properties" : {
@@ -26,5 +31,9 @@ def create_price_index():
     }
     es_client.indices.create(index='history-prices-daily', body=price_index)
 
+    msg = '\"history-prices-daily\" 已建立完成'
+    return msg
+
 if __name__ == '__main__':
-    create_price_index()
+    msg = create_price_index()
+    print(msg)

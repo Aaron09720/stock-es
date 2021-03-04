@@ -3,15 +3,15 @@ import json
 import requests
 
 from datetime import datetime
-from elasticsearch import Elasticsearch
 
 from notify import notify
+from es_client import es_client
 
 
 es_client = Elasticsearch()
 parse_comma = (lambda num: num.replace(',', ''))
 
-def update_daily_price():
+def update_daily_price() -> str:
     """Update daily price."""
     url = 'https://www.twse.com.tw/exchangeReport/STOCK_DAY_ALL'
     response = requests.get(url)
